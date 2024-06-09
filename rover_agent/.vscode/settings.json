@@ -1,0 +1,16 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/vesa/ros2_ws/build/rover_agent",
+        "/home/vesa/ros2_ws/install/rover_agent/lib/python3.10/site-packages",
+        "/home/vesa/ros2_ws/install/rover_agent_msgs/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/vesa/ros2_ws/build/rover_agent",
+        "/home/vesa/ros2_ws/install/rover_agent/lib/python3.10/site-packages",
+        "/home/vesa/ros2_ws/install/rover_agent_msgs/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
