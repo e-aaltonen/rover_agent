@@ -85,8 +85,8 @@ class SWMessenger(Node):
             depth=1            
         )"""
         
-        self.declare_parameter("/rover_agent/rc_status_topic", value="/bunker_rc_status")
-        self._rc_topic = self.get_parameter("/rover_agent/rc_status_topic").get_parameter_value().string_value       
+        #self.declare_parameter("rc_status_topic", value="/bunker_rc_status")
+        #self._rc_topic = self.get_parameter("rc_status_topic").get_parameter_value().string_value       
         
         self.sub_rc = self.create_subscription(BunkerRCState, "/bunker_rc_status", self.callback_rc_status, 10)
         self.sub_rc2 = self.create_subscription(ScoutRCState, "/scout_rc_status", self.callback_rc_status, 10)

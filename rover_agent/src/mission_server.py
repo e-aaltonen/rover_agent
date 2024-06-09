@@ -108,14 +108,14 @@ class WPmanip(Node):
         #Distance coefficients for distance approximations
         self.k_lat = 111194
         self.k_long = 50519
-        self.k_set = self.has_parameter("/rover_agent/k_lat")
+        self.k_set = self.has_parameter("k_lat")
 
          # set default topic for velocity commands
-        self.declare_parameter("/rover_agent/k_lat", value=111194)
-        self.declare_parameter("/rover_agent/k_long", value=50519)
+        self.declare_parameter("k_lat", value=111194)
+        self.declare_parameter("k_long", value=50519)
         
-        self.k_lat = self.get_parameter("/rover_agent/k_lat").get_parameter_value().integer_value
-        self.k_long = self.get_parameter("/rover_agent/k_long").get_parameter_value().integer_value
+        self.k_lat = self.get_parameter("k_lat").get_parameter_value().integer_value
+        self.k_long = self.get_parameter("k_long").get_parameter_value().integer_value
         
 
         
@@ -486,16 +486,16 @@ class WPmanip(Node):
 
         self.k_set = True
 
-        self.k_lat = self.get_parameter("/rover_agent/k_lat").get_parameter_value().integer_value
-        self.k_long = self.get_parameter("/rover_agent/k_long").get_parameter_value().integer_value
+        self.k_lat = self.get_parameter("k_lat").get_parameter_value().integer_value
+        self.k_long = self.get_parameter("k_long").get_parameter_value().integer_value
 
         param_k_lat = rclpy.parameter.Parameter(
-            '/rover_agent/k_lat',
+            'k_lat',
             rclpy.Parameter.Type.INTEGER,
             self.k_lat
         )
         param_k_long = rclpy.parameter.Parameter(
-            '/rover_agent/k_long',
+            'k_long',
             rclpy.Parameter.Type.INTEGER,
             self.k_long
         )

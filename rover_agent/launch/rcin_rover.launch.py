@@ -18,7 +18,7 @@ def generate_launch_description():
             package='rover_agent',
             executable='rc_arm_disarm',
             parameters=[
-                {"/rover_agent/opt_mode": "GUIDED"}
+                {"opt_mode": "GUIDED"}
             ]
     )
     ld.add_action(rc_arm_disarm)
@@ -33,8 +33,8 @@ def generate_launch_description():
             package='rover_agent',
             executable='mission_server',
             parameters=[
-                {"/rover_agent/k_lat": 111194},
-                {"/rover_agent/k_long": 50519}
+                {"k_lat": 111194},
+                {"k_long": 50519}
             ]
     )
     ld.add_action(mission_server)

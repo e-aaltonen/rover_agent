@@ -11,6 +11,17 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     ld = LaunchDescription()
 
+    scout_base = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('scout_base'),
+                'launch',
+                'scout_mini_base.launch.py'
+            ])
+        ])
+    )
+    ld.add_action(scout_base)
+
     mavros = IncludeLaunchDescription(
         XMLLaunchDescriptionSource(
             os.path.join(

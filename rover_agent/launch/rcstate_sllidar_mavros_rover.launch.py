@@ -1,3 +1,6 @@
+import os
+from ament_index_python import get_package_share_directory
+from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -20,16 +23,12 @@ def generate_launch_description():
     ld.add_action(sllidar_a3)
 
     mavros = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            PathJoinSubstitution([
-                FindPackageShare('mavros'),
-                'launch',
-                'apm.launch'
-            ])
-        ]),
-        launch_arguments={
-            'fcu_url': '/dev/ttyACM0:57600',
-        }.items()
+        XMLLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('mavros'),
+                'launch/apm.launch',
+            )
+        )
     )
     ld.add_action(mavros)
 

@@ -40,8 +40,8 @@ class RCArming(Node):
 
         self.swc = 0
         self.swd = 0
-        self.declare_parameter("/rover_agent/opt_mode", value="GUIDED")
-        self.opt_mode = self.get_parameter("/rover_agent/opt_mode").get_parameter_value().string_value
+        self.declare_parameter("opt_mode", value="GUIDED")
+        self.opt_mode = self.get_parameter("opt_mode").get_parameter_value().string_value
 
     # Read Switch C value
     def callback_update_swc(self, msg):

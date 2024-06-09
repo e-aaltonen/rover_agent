@@ -40,15 +40,15 @@ class RCOutInput(Node):
         self._pwm_min = 900
         self._pwm_max = 2100
        
-        self.declare_parameter("/rover_agent/speed_factor_lin_x", value=1.0)
-        self._speed_factor_lin_x = self.get_parameter("/rover_agent/speed_factor_lin_x").get_parameter_value().double_value
+        self.declare_parameter("speed_factor_lin_x", value=1.0)
+        self._speed_factor_lin_x = self.get_parameter("speed_factor_lin_x").get_parameter_value().double_value
         #self.get_logger().info("{0}".format(self._speed_factor_lin_x))
-        self.declare_parameter("/rover_agent/speed_factor_ang_z", value=1.0)
-        self._speed_factor_ang_z = self.get_parameter("/rover_agent/speed_factor_ang_z").get_parameter_value().double_value
+        self.declare_parameter("speed_factor_ang_z", value=1.0)
+        self._speed_factor_ang_z = self.get_parameter("speed_factor_ang_z").get_parameter_value().double_value
 
         # set default topic for velocity commands
-        self.declare_parameter("/rover_agent/vel_topic", value="/cmd_vel")
-        self._vel_topic = self.get_parameter("/rover_agent/vel_topic").get_parameter_value().string_value
+        self.declare_parameter("vel_topic", value="/cmd_vel")
+        self._vel_topic = self.get_parameter("vel_topic").get_parameter_value().string_value
 
         self.pub_twist = self.create_publisher(Twist, self._vel_topic, 1)
         self.pub_timer_ = self.create_timer(0.02, self.send_vel_msg)
