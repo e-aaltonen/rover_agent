@@ -25,7 +25,6 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
                 FindPackageShare('rover_agent'),
-                'launch',
                 'rcstate_rover.launch.py'
             ])
         ])
