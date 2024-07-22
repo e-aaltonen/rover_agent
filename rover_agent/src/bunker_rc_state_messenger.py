@@ -129,7 +129,7 @@ class SWMessenger(Node):
         # Check if Left knob has changed and publish in topic autopilot/switch/var_a
         if msg.var_a != self.last_var_a:
             topub = Int8()
-            topub.data = self.var_a
+            topub.data = msg.var_a
             self.pub_var_a.publish(topub)  
             self.last_var_a = msg.var_a
         
