@@ -93,7 +93,7 @@ class SWMessenger(Node):
         self.sub_rc = self.create_subscription(BunkerRCState, "/rc_state", self.callback_rc_status, 10)
         
     def callback_rc_status(self, msg):
-        self.get_logger().info("{0}".format(msg.swa));
+        #self.get_logger().info("{0}".format(msg.swa));
         self.channel_msg.right_x = msg.stick_right_h
         self.channel_msg.right_y = msg.stick_right_v
         self.channel_msg.left_x = msg.stick_left_h
