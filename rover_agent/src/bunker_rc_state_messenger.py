@@ -36,17 +36,7 @@ from ros2topic.api import get_msg_class
 from std_msgs.msg import UInt8, Int8
 from rover_agent_msgs.msg import RCchannels
 from rcl_interfaces.srv import GetParameters, SetParameters
-import ros2interface
-
-agilex_robot = "None"
-nodelist = Node.get_node_names()
-if "/bunker" in nodelist:
-    agilex_robot = "Bunker"
-    from bunker_msgs.msg import BunkerRCState
-
-elif "/scout" in nodelist:
-    agilex_robot = "Scout"
-    from scout_msgs.msg import ScoutRCState
+from bunker_msgs.msg import BunkerRCState
 
 from rover_agent_msgs.msg import RCchannels
 
@@ -100,10 +90,7 @@ class SWMessenger(Node):
         #self.declare_parameter("rc_status_topic", value="/bunker_rc_status")
         #self._rc_topic = self.get_parameter("rc_status_topic").get_parameter_value().string_value       
         
-        if agilex_robot == "Bunker":
-            self.sub_rc = self.create_subscription(BunkerRCState, "/bunker_rc_status", self.callback_rc_status, 10)
-        if agilex_robot == "Scout":
-            self.sub_rc2 = self.create_subscription(ScoutRCState, "/scout_rc_status", self.callback_rc_status, 10)
+        self.sub_rc = self.create_subscription(BunkerRCState, "/rc_state", self.callback_rc_status, 10)
         
     def callback_rc_status(self, msg):
         self.get_logger().info("{0}".format(msg.swa));

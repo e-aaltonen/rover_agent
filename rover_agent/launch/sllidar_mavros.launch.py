@@ -2,7 +2,7 @@ import os
 from ament_index_python import get_package_share_directory
 from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
+from launch.actions import GroupAction, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution, TextSubstitution
 from launch_ros.actions import Node
@@ -22,14 +22,21 @@ def generate_launch_description():
     )
     ld.add_action(sllidar_a3)
 
-    mavros = IncludeLaunchDescription(
-        XMLLaunchDescriptionSource(
-            os.path.join(
-                get_package_share_directory('mavros'),
-                'launch/apm.launch',
+    mavros = GroupAction(
+        actions=[
+            IncludeLaunchDescription(
+                XMLLaunchDescriptionSource(
+                    os.path.join(
+                        get_package_share_directory('mavros'),
+                        'launch/apm.launch'
+                    )
+                ),
+                launch_arguments={
+                    'fcu_url': '/dev/ttyUSB0:57600',
+                }.items()
             )
-        )
-    )
+        ]
+    ) 
     ld.add_action(mavros)
 
     topic_relay = Node(
