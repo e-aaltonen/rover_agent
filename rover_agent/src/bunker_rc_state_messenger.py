@@ -103,24 +103,34 @@ class SWMessenger(Node):
         # Check if any of the switches have changed and publish in topics autopilot/switch/a, b, c or d
         # Only publish if switch value is 0, 1 or 2 (= eliminate rubbish values during 2-pos. switch transition)
         if msg.swa != self.last_swa and msg.swa in range(3):
-            self.pub_swa.publish(msg.swa)
+            topub = UInt8()
+            topub.data = msg.swa
+            self.pub_swa.publish(topub)
             self.last_swa = msg.swa
 
         if msg.swb != self.last_swb and msg.swb in range(3):
-            self.pub_swb.publish(msg.swb)
+            topub = UInt8()
+            topub.data = msg.swb
+            self.pub_swb.publish(topub)
             self.last_swb = msg.swb
 
         if msg.swc != self.last_swc and msg.swc in range(3):
-            self.pub_swc.publish(msg.swc)
+            topub = UInt8()
+            topub.data = msg.swc
+            self.pub_swc.publish(topub)
             self.last_swc = msg.swc
 
         if msg.swd != self.last_swd and msg.swd in range(3):
-            self.pub_swd.publish(msg.swd)
+            topub = UInt8()
+            topub.data = msg.swd
+            self.pub_swd.publish(topub)
             self.last_swd = msg.swd
 
         # Check if Left knob has changed and publish in topic autopilot/switch/var_a
         if msg.var_a != self.last_var_a:
-            self.pub_var_a.publish(self.last_var_a)  
+            topub = Int8()
+            topub.data = self.var_a
+            self.pub_var_a.publish(topub)  
             self.last_var_a = msg.var_a
         
         self.channel_msg.swa = self.sw_to_chan(msg.swa)
