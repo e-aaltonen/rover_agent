@@ -10,7 +10,7 @@ def generate_launch_description():
 
     rc_state_messenger = Node(
             package='rover_agent',
-            executable='bunker_rc_state_messenger',
+            executable='scout_rc_state_messenger',
     )
     ld.add_action(rc_state_messenger)
 

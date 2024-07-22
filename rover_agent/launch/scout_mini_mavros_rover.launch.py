@@ -11,16 +11,16 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     ld = LaunchDescription()
 
-    bunker_base = IncludeLaunchDescription(
+    scout_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
-                FindPackageShare('bunker_base'),
+                FindPackageShare('scout_base'),
                 'launch',
-                'bunker_base.launch.py'
+                'scout_mini_base.launch.py'
             ])
         ])
     )
-    ld.add_action(bunker_base)
+    ld.add_action(scout_base)
 
     mavros = GroupAction(
         actions=[
@@ -32,19 +32,19 @@ def generate_launch_description():
                     )
                 ),
                 launch_arguments={
-                    'fcu_url': '/dev/ttyUSB0:57600',
+                    'fcu_url': '/dev/ttyACM0:57600',
                 }.items()
             )
         ]
     ) 
     ld.add_action(mavros)
-
+    
     rover_agent = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
                 FindPackageShare('rover_agent'),
                 'launch',
-                'bunker_rcstate_rover.launch.py'
+                'scout_rcstate_rover.launch.py'
             ])
         ])
     )

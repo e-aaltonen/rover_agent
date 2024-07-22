@@ -21,7 +21,7 @@ def generate_launch_description():
                     )
                 ),
                 launch_arguments={
-                    'fcu_url': '/dev/ttyUSB0:57600',
+                    'fcu_url': '/dev/ttyACM0:57600',
                 }.items()
             )
         ]
@@ -32,7 +32,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
                 FindPackageShare('rover_agent'),
-                'bunker_rcstate_rover.launch.py'
+                'scout_rcstate_rover.launch.py'
             ])
         ])
     )

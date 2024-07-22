@@ -36,7 +36,7 @@ from ros2topic.api import get_msg_class
 from std_msgs.msg import UInt8, Int8
 from rover_agent_msgs.msg import RCchannels
 from rcl_interfaces.srv import GetParameters, SetParameters
-from bunker_msgs.msg import BunkerRCState
+from scout_msgs.msg import ScoutRCState
 
 from rover_agent_msgs.msg import RCchannels
 
@@ -87,10 +87,8 @@ class SWMessenger(Node):
             depth=1            
         )"""
         
-        #self.declare_parameter("rc_status_topic", value="/bunker_rc_status")
-        #self._rc_topic = self.get_parameter("rc_status_topic").get_parameter_value().string_value       
-        
-        self.sub_rc = self.create_subscription(BunkerRCState, "/rc_state", self.callback_rc_status, 10)
+
+        self.sub_rc = self.create_subscription(ScoutRCState, "/rc_state", self.callback_rc_status, 10)
         
     def callback_rc_status(self, msg):
         #self.get_logger().info("{0}".format(msg.swa))

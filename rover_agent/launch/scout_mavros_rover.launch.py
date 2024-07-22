@@ -11,16 +11,16 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     ld = LaunchDescription()
 
-    sllidar_a3 = IncludeLaunchDescription(
+    bunker_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
-                FindPackageShare('sllidar_ros2'),
+                FindPackageShare('scout_base'),
                 'launch',
-                'sllidar_a3_launch.py'
+                'scout_mini_base.launch.py'
             ])
         ])
     )
-    ld.add_action(sllidar_a3)
+    ld.add_action(bunker_base)
 
     mavros = GroupAction(
         actions=[
@@ -39,11 +39,16 @@ def generate_launch_description():
     ) 
     ld.add_action(mavros)
 
-    topic_relay = Node(
-        package='topic_tools',
-        executable='relay',
-        arguments=['/scan', '/mavros/obstacle/send']
+    rover_agent = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('rover_agent'),
+                'launch',
+                'scout_rcstate_rover.launch.py'
+            ])
+        ])
     )
-    ld.add_action(topic_relay)
+    ld.add_action(rover_agent)
+
 
     return ld
