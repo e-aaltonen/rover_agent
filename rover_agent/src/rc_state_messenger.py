@@ -29,6 +29,7 @@ Requirements:
 
 import rclpy
 from rclpy.node import Node
+import rclpy.node
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 import ros2node.command
 from ros2topic.api import get_msg_class
@@ -38,7 +39,7 @@ from rcl_interfaces.srv import GetParameters, SetParameters
 import ros2interface
 
 agilex_robot = "None"
-nodelist = rclpy.Node.get_node_names()
+nodelist = Node.get_node_names()
 if "/bunker" in nodelist:
     agilex_robot = "Bunker"
     from bunker_msgs.msg import BunkerRCState
