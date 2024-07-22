@@ -74,11 +74,11 @@ class SWMessenger(Node):
         self.channel_msg.button = 0
         self.pub_timer_ = self.create_timer(0.04, self.send_channels)
 
-        self.last_swa = 0
-        self.last_swb = 0
-        self.last_swc = 0
-        self.last_swd = 0
-        self.last_var_a = 0
+        self.last_swa: UInt8 = 0
+        self.last_swb: UInt8 = 0
+        self.last_swc: UInt8 = 0
+        self.last_swd: UInt8 = 0
+        self.last_var_a: Int8 = 0
 
         """self.get_logger().info("nyt QoS")
         qos_profile = QoSProfile(
@@ -93,7 +93,7 @@ class SWMessenger(Node):
         self.sub_rc = self.create_subscription(BunkerRCState, "/rc_state", self.callback_rc_status, 10)
         
     def callback_rc_status(self, msg):
-        #self.get_logger().info("{0}".format(msg.swa));
+        #self.get_logger().info("{0}".format(msg.swa))
         self.channel_msg.right_x = msg.stick_right_h
         self.channel_msg.right_y = msg.stick_right_v
         self.channel_msg.left_x = msg.stick_left_h
