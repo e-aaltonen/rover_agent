@@ -29,7 +29,8 @@ setup(
             "mission_server = src.mission_server:main",
             "rc_arm_disarm = src.rc_arm_disarm:main",
             "servo_manager = src.servo_manager:main",
-            "rc_state_messenger = src.rc_state_messenger:main",
+            "bunker_rc_state_messenger = src.bunker_rc_state_messenger:main",
+            "scout_rc_state_messenger = src.scout_rc_state_messenger:main",
         ],
     },
 )
