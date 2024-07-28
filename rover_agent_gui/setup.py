@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	"autogui.py = src.autogui:main",
+        	"autogui = src.autogui:main",
         ],
     },
 )
