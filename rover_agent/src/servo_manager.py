@@ -70,7 +70,7 @@ class ServoMngr(Node):
         paramList[0].name = param_id
         paramList[0].value.type = 2
         paramList[0].value.integer_value = param_value
-        param_client = ParamSetClient()
+        param_client = ParamSetClient("/mavros/param/set_parameters")
 
         try:
             result = param_client.send_request(paramList)

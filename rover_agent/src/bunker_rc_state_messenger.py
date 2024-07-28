@@ -38,26 +38,11 @@ from rover_agent_msgs.msg import RCchannels
 from rcl_interfaces.srv import GetParameters, SetParameters
 from bunker_msgs.msg import BunkerRCState
 
-from rover_agent_msgs.msg import RCchannels
-
 
 # int literals for switch positions
 SW_UP = 0
 SW_MIDDLE = 1
 SW_DOWN = 2
-
-class ParamGetClient(Node):
-    def __init__(self):
-        super().__init__("paramget_client_async")
-        self.cli = self.create_client(GetParameters, "/mavros/param/get_parameters")
-        while not self.cli.wait_for_service(timeout_sec=1.0):
-                self.get_logger().info("Waiting for service...")
-        self.req = GetParameters.Request()
-    def send_request(self, pnames):
-        self.req.names = pnames
-        self.future = self.cli.call_async(self.req)
-        rclpy.spin_until_future_complete(self, self.future)
-        return self.future.result()
 
 class SWMessenger(Node):
     def __init__(self):
