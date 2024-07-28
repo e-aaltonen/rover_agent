@@ -46,7 +46,7 @@ SW_DOWN = 2
 
 class SWMessenger(Node):
     def __init__(self):
-        super().__init__("rc_state_messenger")
+        super().__init__("bunker_rc_state_messenger")
         self.get_logger().info("> RC switches messenger 3")
         
         self.pub_swa = self.create_publisher(UInt8, "/rover_agent/swa", 1)
