@@ -38,6 +38,9 @@ SW_UP = 0
 SW_MIDDLE = 1
 SW_DOWN = 2
 
+root = tk.Tk()
+pyautogui.PAUSE = 0
+
 class LFrame(tk.LabelFrame):
     def __init__(self, *args, **kwargs):
         tk.LabelFrame.__init__(self, *args, **kwargs)
@@ -828,6 +831,5 @@ def main(args=None):
     rclpy.shutdown()
 
 if __name__ == '__main__':
-    root = tk.Tk()
-    pyautogui.PAUSE = 0
+    
     main()
