@@ -84,7 +84,7 @@ class ListWP():
         self.y_m = 0.0
         self.selected = False
         
-class MissionGUI():
+class MissionGUI(Node):
     def __init__(self):
         super().__init__("autogui")
         
