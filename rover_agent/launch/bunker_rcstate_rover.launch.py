@@ -14,6 +14,12 @@ def generate_launch_description():
     )
     ld.add_action(rc_state_messenger)
 
+    rcout_to_cmd_vel = Node(
+            package='rover_agent',
+            executable='rcout_to_cmd_vel',
+    )
+    ld.add_action(rcout_to_cmd_vel)
+    
     rc_arm_disarm = Node(
             package='rover_agent',
             executable='rc_arm_disarm',
