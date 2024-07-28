@@ -10,6 +10,7 @@ from tkinter import ttk
 from std_msgs.msg import Int8, UInt8, UInt16, Float64
 from std_msgs.msg import String
 from mavros_msgs.msg import State, Waypoint, WaypointList
+from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 from sensor_msgs.msg import Imu
 from rover_agent_msgs.srv import MissionManip
 from src.service_clients import ParamGetClient
@@ -93,6 +94,11 @@ class MissionGUI(Node):
         
         pyautogui.move(100, 100, duration = 0.5)
         
+        qos_profile = QoSProfile(
+            reliability=QoSReliabilityPolicy.BEST_EFFORT,
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=1            
+        )        
         self.global_position = NavSatFix()  
         self.global_position.latitude=62.123456
         self.global_position.longitude=23.123456
@@ -380,11 +386,11 @@ class MissionGUI(Node):
         self.wps = WaypointList()
         
         self.sub_mavros_state = self.create_subscription(State, "/mavros/state", self.cb_state, 10)
-        self.sub_mavros_imu = self.create_subscription(Imu, "/mavros/imu/data", self.cb_imu, 10)
+        self.sub_mavros_imu = self.create_subscription(Imu, "/mavros/imu/data", self.cb_imu, qos_profile=qos_profile)
         self.sub_mavros_wps = self.create_subscription(WaypointList, "/mavros/mission/waypoints", self.cb_mission_wps, 10)
-        self.sub_mavros_velocity = self.create_subscription(TwistStamped, "/mavros/local_position/velocity_body", self.cb_velocity, 10)
-        self.sub_mavros_compass_hdg = self.create_subscription(Float64, "/mavros/global_position/compass_hdg", self.cb_compass_hdg, 10)
-        self.sub_mavros_global_position = self.create_subscription(NavSatFix, "/mavros/global_position/global", self.cb_global_position, 10)
+        self.sub_mavros_velocity = self.create_subscription(TwistStamped, "/mavros/local_position/velocity_body", self.cb_velocity, qos_profile=qos_profile)
+        self.sub_mavros_compass_hdg = self.create_subscription(Float64, "/mavros/global_position/compass_hdg", self.cb_compass_hdg, qos_profile=qos_profile)
+        self.sub_mavros_global_position = self.create_subscription(NavSatFix, "/mavros/global_position/global", self.cb_global_position, qos_profile=qos_profile)
         
         self.sub_rover_channels = self.create_subscription(RCchannels, "/rover_agent/channels", self.cb_cursor, 10)
         self.sub_rover_wpinfo = self.create_subscription(WPInfo, "/rover_agent/wp_info", self.cb_wpinfo, 10)
