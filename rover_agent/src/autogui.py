@@ -578,6 +578,8 @@ class MissionGUI(Node):
             self.output_label.config(text = configtext + " success: " + str(serviceSuccess))
         except Exception as e:
             self.get_logger().error("Service call mission_manip failed: %s"%e)
+
+        mission_client.destroy_node()
   
     def rsel(self, i):
         sel_index = self.var_bool.get()
