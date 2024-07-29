@@ -31,6 +31,9 @@ setup(
             "servo_manager = src.servo_manager:main",
             "bunker_rc_state_messenger = src.bunker_rc_state_messenger:main",
             "autogui = src.autogui:main",
+            "backwards_mission = src.backwards_mission:main",
+            "offset_mission = src.offset_mission:main",
+            "offset_one_wp = src.offset_one_wp:main",
         ],
     },
 )
