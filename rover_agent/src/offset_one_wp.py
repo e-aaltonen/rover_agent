@@ -31,9 +31,9 @@ class WPmanip(Node):
         super().__init__("backwards_mission")
         self.get_logger().info("> calling /rover_agent/mission_server, task=5 [OFFSET_MISSION]")
         
-        self.get_logger().error("This executable takes 3 command-line arguments: x (integer), y.y (float) and z.z (float). Usage:")
-        self.get_logger().error("ros2 run rover_agent offset_mission x y.y z.z")
-        self.get_logger().error("where x = waypoint no., y.y = distance (m), z.z = direction (compass heading in degrees, 0.0-180.0)")
+        self.get_logger().info("This executable takes 3 command-line arguments: x (integer), y.y (float) and z.z (float). Usage:")
+        self.get_logger().info("ros2 run rover_agent offset_mission x y.y z.z")
+        self.get_logger().info("where x = waypoint no., y.y = distance (m), z.z = direction (compass heading in degrees, 0.0-360.0)")
         
         if len(sys.argv)>3:
             wp=0
