@@ -1,9 +1,11 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
+from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PathJoinSubstitution, TextSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+
+opt_mode = DeclareLaunchArgument('opt_mode', default_value="GUIDED")
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -24,7 +26,7 @@ def generate_launch_description():
             package='rover_agent',
             executable='rc_arm_disarm',
             parameters=[
-                {"opt_mode": "GUIDED"}
+                {"opt_mode": opt_mode}
             ]
     )
     ld.add_action(rc_arm_disarm)
