@@ -4,15 +4,16 @@ from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 from launch import LaunchDescription
 from launch.actions import GroupAction, IncludeLaunchDescription, SetEnvironmentVariable, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution, TextSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, TextSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-opt_mode = DeclareLaunchArgument('opt_mode', default_value="GUIDED")
-
 def generate_launch_description():
     ld = LaunchDescription()
-
+    opt_mode_value = LaunchConfiguration('opt_mode')
+    opt_mode_launch_arg = DeclareLaunchArgument('opt_mode', default_value="GUIDED")
+    ld.add_action(opt_mode_launch_arg)
+    
     bunker_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -49,7 +50,7 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-            'opt_mode': opt_mode
+            'opt_mode': opt_mode_value
         }.items()
     )
     ld.add_action(rover_agent)
