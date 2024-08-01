@@ -182,10 +182,10 @@ class MissionGUI(Node):
         self.button_off = ServiceButton(self.frame_off, text=self.service_button_texts[self.langindex][4], activebackground="#73B0E6", command=lambda: self.service_mission(OFFSET_MISSION))
         self.button_off.pack()
         self.frame_rot = ServiceFrame(self.f_buttons, bg="#5B17E6") #260
-        self.button_rot = ServiceButton(self.frame_rot, text=self.service_button_texts[self.langindex][5], activebackground="#9973E6", command=lambda: self.service_mission(SCALE_MISSION))
+        self.button_rot = ServiceButton(self.frame_rot, text=self.service_button_texts[self.langindex][5], activebackground="#9973E6", command=lambda: self.service_mission(SCALE_ROTATE_MISSION))
         self.button_rot.pack()
         self.frame_mir = ServiceFrame(self.f_buttons, bg="#E617BD") #312
-        self.button_mir = ServiceButton(self.frame_mir, text=self.service_button_texts[self.langindex][6], activebackground="#E673CF", command=lambda: self.service_mission(ROTATE_MISSION))
+        self.button_mir = ServiceButton(self.frame_mir, text=self.service_button_texts[self.langindex][6], activebackground="#E673CF", command=lambda: self.service_mission(MIRROR_MISSION))
         self.button_mir.pack()
         
         self.k_lat = 111194
