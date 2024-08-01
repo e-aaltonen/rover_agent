@@ -28,7 +28,7 @@ ROTATE_MISSION = 7
 
 class WPmanip(Node):
     def __init__(self):
-        super().__init__("backwards_mission")
+        super().__init__("offset_mission")
         self.get_logger().info("> calling /rover_agent/mission_server, task=5 [OFFSET_MISSION]")
         
         self.get_logger().info("This executable takes 2 command-line arguments: x.x (float) and y.y (float). Usage:")
