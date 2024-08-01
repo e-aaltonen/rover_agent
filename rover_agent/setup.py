@@ -34,6 +34,8 @@ setup(
             "backwards_mission = src.backwards_mission:main",
             "offset_mission = src.offset_mission:main",
             "offset_one_wp = src.offset_one_wp:main",
+            "scale_rotate_mission = src.scale_rotate_mission:main",
+            "mirror_mission = src.mirror_mission:main",
         ],
     },
 )
