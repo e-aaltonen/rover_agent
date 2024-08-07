@@ -129,6 +129,8 @@ class MissionGUI(Node):
 
         self.wps = WaypointList()
         
+        self.get_logger().info("Setting subscriptions")
+
         self.sub_mavros_state = self.create_subscription(State, "/mavros/state", self.cb_state, 10)
         self.sub_mavros_imu = self.create_subscription(Imu, "/mavros/imu/data", self.cb_imu, qos_profile=qos_profile)
         self.sub_mavros_wps = self.create_subscription(WaypointList, "/mavros/mission/waypoints", self.cb_mission_wps, 10)
@@ -397,6 +399,8 @@ class MissionGUI(Node):
         self.wp_listbox.bind("<<ListboxSelect>>", self.event_listbox_select)
         self.wp_listbox.bind("<Button-4>", lambda x: self.update_scroll_arrows(1))  
         self.wp_listbox.bind("<Button-5>", lambda x: self.update_scroll_arrows(-1))  
+
+        self.get_logger().info("End init")
         
 
     # ***   ***     ***
