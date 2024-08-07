@@ -639,6 +639,7 @@ class MissionGUI(Node):
     # *** Callback functions ***
     # Calculate pitch & roll angles
     def cb_imu(self, msg):
+        self.get_logger().info("cb_imu: {0}".format(msg))
         xacc = msg.linear_acceleration.x
         yacc = msg.linear_acceleration.y
         zacc = msg.linear_acceleration.z
@@ -653,16 +654,22 @@ class MissionGUI(Node):
 
     # Compass heading
     def cb_compass_hdg(self, msg):
+        self.get_logger().info("cb_compass_hdg: {0}".format(msg))
+        
         self.bearing = int(msg.data)
         self.label_bearing.config(text=str(self.bearing))
     
     # Linear velocity
     def cb_velocity(self, msg):
+        self.get_logger().info("cb_velocity: {0}".format(msg))
+        
         self.speed = round(msg.twist.linear.x, 1)
         self.label_speed.config(text=str(self.speed) + " m/s")
     
     # FCU armed state & control state
     def cb_state(self, msg):
+        self.get_logger().info("cb_state: {0}".format(msg))
+        
         if(msg.armed):
             self.modeArm = "Armed"
         else:
@@ -688,6 +695,8 @@ class MissionGUI(Node):
 
     # Read stick & button values from RCin
     def cb_cursor(self, msg):
+        #self.get_logger().info("cb_cursor: {0}".format(msg))
+        
         self.f_attr_x = self.f_attr.winfo_rootx()
         self.f_attr_y = self.f_attr.winfo_rooty()
 
@@ -718,6 +727,8 @@ class MissionGUI(Node):
 
     # Read switch SWA status
     def cb_swa(self, msg):
+        #self.get_logger().info("cb_swa: {0}".format(msg))
+        
         if msg.data != self.swa:
             self.swa = msg.data
             if msg.data == SW_DOWN: # 3 = switch down to activate function
@@ -730,6 +741,8 @@ class MissionGUI(Node):
 
     # Read WP list from the FCU
     def cb_mission_wps(self, data): 
+        self.get_logger().info("cb_mission_wps: {0}".format(data.current_seq))
+        
         if data != self.wps:
             self.wps = data
             self.current = data.current_seq
