@@ -342,7 +342,7 @@ class WPmanip(Node):
                 wpoff = self.offsetWP(wpoff, (vector.dist * sFactor), (vector.dxion + offsetAngle))
                 #self.get_logger().info("J - y_long: {0}, x_lat: {1}".format(wpoff.y_long, wpoff.x_lat))
                 wp_list.waypoints.append(wpoff)
-                self.get_logger().info(len(wp_list.waypoints))
+                #self.get_logger().info(len(wp_list.waypoints))
             self.wps.waypoints = wp_list.waypoints
             succ = self.wpPush()
         # Prompt fail message
