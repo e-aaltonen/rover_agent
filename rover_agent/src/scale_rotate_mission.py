@@ -35,17 +35,26 @@ class WPmanip(Node):
         self.get_logger().info("ros2 run rover_agent scale_rotate_mission x.x y.y")
         self.get_logger().info("where x.x = rotation angle (degrees, positive = CW), y.y = scale factor (1.0 = original size)")
         
-        if len(sys.argv)>2:
-            rotation=0.0
-            scale_f=1.0
+        rotation=0.0
+        scale_f=1.0
 
+        if len(sys.argv)>1:
+            rotation = float(sys.argv[1])
             try:
                 rotation = float(sys.argv[1])
-                scale_f = float(sys.argv[2])
-                self.get_logger().error("Rotating mission layout by {0} degrees and scaling to {1} * original size".format(rotation, scale_f))
+                self.get_logger().info("Rotating mission layout by {0} degrees ...".format(rotation))
 
             except Exception as e:
                 self.get_logger().error("Arguments must be of type float, float. %s"%e)
+
+            if len(sys.argv)>2:
+                
+                try:
+                    scale_f = float(sys.argv[2])
+                    self.get_logger().info("...and scaling to {0} * original size".format(scale_f))
+
+                except Exception as e:
+                    self.get_logger().error("Arguments must be of type float, float. %s"%e)
 
             mission_client = MissionManipClient()
 
