@@ -700,7 +700,7 @@ class MissionGUI(Node):
 
     # Read stick & button values from RCin
     def cb_cursor(self, msg):
-        #self.get_logger().info("cb_cursor: {0}".format(msg))
+        self.get_logger().info("cb_cursor: {0}".format(msg))
         
         self.f_attr_x = self.f_attr.winfo_rootx()
         self.f_attr_y = self.f_attr.winfo_rooty()
@@ -732,7 +732,7 @@ class MissionGUI(Node):
 
     # Read switch SWA status
     def cb_swa(self, msg):
-        #self.get_logger().info("cb_swa: {0}".format(msg))
+        self.get_logger().info("cb_swa: {0}".format(msg))
         
         if msg.data != self.swa:
             self.swa = msg.data
@@ -742,6 +742,8 @@ class MissionGUI(Node):
 
     # Read switch SWA status
     def cb_swb(self, msg):
+        self.get_logger().info("cb_swb: {0}".format(msg))
+
         self.swb = msg.data
 
     # Read WP list from the FCU
@@ -777,6 +779,8 @@ class MissionGUI(Node):
 
     # Handle WP list
     def set_local_coordinates(self):
+        self.get_logger().info("set_local_coordinates")
+
         if len(self.wplist) > 0:
             min_x_lat = self.wplist[0].x_lat
             min_y_long = self.wplist[0].y_long
@@ -799,6 +803,8 @@ class MissionGUI(Node):
             self.get_logger().info("Total range: {0}".format(self.total_range))
 
     def draw_map(self):
+        self.get_logger().info("draw_map")
+
         self.wp_map.delete("all")
         for wp in self.wplist:
             k = 230 / (max (5.0, self.total_range))
@@ -812,6 +818,8 @@ class MissionGUI(Node):
             
     # Read GPS position data
     def cb_global_position(self, data): 
+        self.get_logger().info("cb_global_position")
+
         self.global_position = data
         self.got_gp = True
         self.label_xlat.config(text=str(round(self.global_position.latitude,6)) + " N")
@@ -819,6 +827,8 @@ class MissionGUI(Node):
 
         
     def cb_wpinfo(self, data):
+        self.get_logger().info("cb_wpinfo")
+
         self.wpinfo_data = data
         
     def run(self):
@@ -847,6 +857,7 @@ class MissionGUI(Node):
         self.frame_mir.grid(row=14, column=6, columnspan=2)
         
         root.protocol("WM_DELETE_WINDOW", root.destroy)
+        self.get_logger().info(".")
         root.mainloop()
 
 def main(args=None):
