@@ -35,7 +35,7 @@ class WPmanip(Node):
         self.get_logger().info("ros2 run rover_agent mirror_mission x.x")
         self.get_logger().info("where x.x = angle for the axis of symmetry in degrees (0.0 = N-S, 90.0 = E-W) (float32)")
         
-        if len(sys.argv)>3:
+        if len(sys.argv)>1:
             direction=0.0
 
             try:
