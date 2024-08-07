@@ -40,7 +40,7 @@ class WPmanip(Node):
 
             try:
                 direction = float(sys.argv[1])
-                self.get_logger().error("Mirroring the mission layout with respect to an axis of symmetry at angle of {0} degrees, passing through the centre of the mission footprint".format(direction))
+                self.get_logger().info("Mirroring the mission layout with respect to an axis of symmetry at angle of {0} degrees, passing through the centre of the mission footprint".format(direction))
 
             except Exception as e:
                 self.get_logger().error("The argument must be of type float. %s"%e)
