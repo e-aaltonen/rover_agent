@@ -57,7 +57,7 @@ class WPmanip(Node):
             except Exception as e:
                 self.get_logger().error("Service call OFFSET_MISSION failed: %s"%e)
             
-            mission_client.destroy_node()
+        mission_client.destroy_node()
 
 def main(args=None):
     rclpy.init(args=args)

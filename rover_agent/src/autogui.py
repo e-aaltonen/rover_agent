@@ -400,6 +400,20 @@ class MissionGUI(Node):
         self.wp_listbox.bind("<Button-4>", lambda x: self.update_scroll_arrows(1))  
         self.wp_listbox.bind("<Button-5>", lambda x: self.update_scroll_arrows(-1))  
 
+
+        self.f_buttons.grid(row=1, rowspan=2, column=3, padx=15, pady=(0,15))  # ROOT
+        self.label_arm.grid(row=0, column=1)
+        self.label_mod.grid(row=0, column=2)
+        
+        self.frame_add.grid(row=3, column=6, columnspan=2, rowspan=2)
+        self.frame_rem.grid(row=5, column=6, columnspan=2, rowspan=2)
+        self.frame_clr.grid(row=7, column=6, columnspan=2, rowspan=2)
+        self.frame_bkw.grid(row=9, column=6, columnspan=2, rowspan=2)
+        self.frame_off.grid(row=11, column=6, columnspan=2, rowspan=2)
+        self.frame_rot.grid(row=13, column=6, columnspan=2)
+        self.frame_mir.grid(row=14, column=6, columnspan=2)
+    
+
         self.get_logger().info("End init")
         
 
@@ -863,7 +877,14 @@ class MissionGUI(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MissionGUI()
-    node.run()
+    #node.run()
+
+    root.title("Bunker autopilot GUI")
+                    
+    root.protocol("WM_DELETE_WINDOW", root.destroy)
+    
+    root.mainloop()
+    
     rclpy.spin(node)
     rclpy.shutdown()
 
