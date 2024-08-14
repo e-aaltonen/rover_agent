@@ -19,6 +19,10 @@ def generate_launch_description():
     speed_launch_arg = DeclareLaunchArgument('speed', default_value="1.0")
     ld.add_action(speed_launch_arg)
 
+    speed_ang_value = LaunchConfiguration('speed_ang')
+    speed_ang_launch_arg = DeclareLaunchArgument('speed_ang', default_value="1.0")
+    ld.add_action(speed_ang_launch_arg)
+
     bunker_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -56,7 +60,8 @@ def generate_launch_description():
         ]),
         launch_arguments={
             'opt_mode': opt_mode_value,
-            'speed': speed_value
+            'speed': speed_value,
+            'speed_ang': speed_ang_value
         }.items()
     )
     ld.add_action(rover_agent)
