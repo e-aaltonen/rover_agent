@@ -10,10 +10,15 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     ld = LaunchDescription()
+    
     opt_mode_value = LaunchConfiguration('opt_mode')
     opt_mode_launch_arg = DeclareLaunchArgument('opt_mode', default_value="RTL")
     ld.add_action(opt_mode_launch_arg)
     
+    speed_value = LaunchConfiguration('speed')
+    speed_launch_arg = DeclareLaunchArgument('speed', default_value="1.0")
+    ld.add_action(speed_launch_arg)
+
     bunker_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -50,7 +55,8 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-            'opt_mode': opt_mode_value
+            'opt_mode': opt_mode_value,
+            'speed': speed_value
         }.items()
     )
     ld.add_action(rover_agent)

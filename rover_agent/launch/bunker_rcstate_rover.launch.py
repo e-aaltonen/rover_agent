@@ -7,10 +7,15 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     ld = LaunchDescription()
+
     opt_mode_value = LaunchConfiguration('opt_mode')
-    opt_mode_launch_arg = DeclareLaunchArgument('opt_mode', default_value="GUIDED")
+    opt_mode_launch_arg = DeclareLaunchArgument('opt_mode', default_value="RTL")
     ld.add_action(opt_mode_launch_arg)
     
+    speed_value = LaunchConfiguration('speed')
+    speed_launch_arg = DeclareLaunchArgument('speed', default_value="1.0")
+    ld.add_action(speed_launch_arg)
+
     rc_state_messenger = Node(
             package='rover_agent',
             executable='bunker_rc_state_messenger',
@@ -20,6 +25,10 @@ def generate_launch_description():
     rcout_to_cmd_vel = Node(
             package='rover_agent',
             executable='rcout_to_cmd_vel',
+            parameters=[
+                {"speed_factor_lin_x": speed_value,
+                 "speed_factor_ang_z": speed_value}
+            ]
     )
     ld.add_action(rcout_to_cmd_vel)
     
