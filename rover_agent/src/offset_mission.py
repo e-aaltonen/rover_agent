@@ -42,7 +42,7 @@ class WPmanip(Node):
             try:
                 dist = float(sys.argv[1])
                 direction = float(sys.argv[2])
-                self.get_logger().error("Offsetting all mission waypoints by {0} metres in direction {1}".format(dist, direction))
+                self.get_logger().info("Offsetting all mission waypoints by {0} metres in direction {1}".format(dist, direction))
 
             except Exception as e:
                 self.get_logger().error("Arguments must be float values. %s"%e)

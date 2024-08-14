@@ -44,7 +44,7 @@ class WPmanip(Node):
                 wp = int(sys.argv[1])
                 dist = float(sys.argv[2])
                 direction = float(sys.argv[3])
-                self.get_logger().error("Offsetting waypoint #{0} by {1} metres in direction {2}".format(wp, dist, direction))
+                self.get_logger().info("Offsetting waypoint #{0} by {1} metres in direction {2}".format(wp, dist, direction))
 
             except Exception as e:
                 self.get_logger().error("Arguments must be of type int, float, float. %s"%e)
