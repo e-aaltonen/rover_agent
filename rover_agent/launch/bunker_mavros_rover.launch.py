@@ -11,7 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     ld = LaunchDescription()
     opt_mode_value = LaunchConfiguration('opt_mode')
-    opt_mode_launch_arg = DeclareLaunchArgument('opt_mode', default_value="GUIDED")
+    opt_mode_launch_arg = DeclareLaunchArgument('opt_mode', default_value="RTL")
     ld.add_action(opt_mode_launch_arg)
     
     bunker_base = IncludeLaunchDescription(
