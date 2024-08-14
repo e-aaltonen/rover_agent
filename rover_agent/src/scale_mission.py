@@ -38,9 +38,8 @@ class WPmanip(Node):
         scale_f=1.0
 
         if len(sys.argv)>1:
-            rotation = float(sys.argv[1])
             try:
-                rotation = float(sys.argv[1])
+                scale_f = float(sys.argv[1])
                 self.get_logger().info("Scaling mission to {0} * original size".format(scale_f))
 
             except Exception as e:
@@ -49,8 +48,8 @@ class WPmanip(Node):
             mission_client = MissionManipClient()
 
             try:
-                result = mission_client.send_request(task = SCALE_ROTATE_MISSION, scale_factor=scale_f)
-                self.get_logger().info("Mission was rotated by {0} dgr, scaled to size {1}.".format(scale_f))
+                result = mission_client.send_request(task = SCALE_ROTATE_MISSION, direction_angle=0.0, scale_factor=scale_f)
+                self.get_logger().info("Mission was scaled to size {0}.".format(scale_f))
             except Exception as e:
                 self.get_logger().error("Service call SCALE_ROTATE_MISSION failed: %s"%e)
             
