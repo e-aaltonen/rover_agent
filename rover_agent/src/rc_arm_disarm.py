@@ -73,7 +73,7 @@ class RCArming(Node):
                     #self.get_logger().info("Try opt")
                     result = mode_client.send_request(custom_mode=self.opt_mode) #return true or false
                     if not result: # if an invalid mode name is given in the param
-                        self.get_logger().warn("Invalid aux mode name: {0}".format(self.apt_mode))
+                        self.get_logger().warn("Invalid aux mode name: {0}".format(self.opt_mode))
                 except Exception as e:
                         self.get_logger().error("Set mode service call failed: %s"%e)
 

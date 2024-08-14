@@ -342,7 +342,7 @@ class WPmanip(Node):
                 wpoff = self.offsetWP(wpoff, (vector.dist * sFactor), (vector.dxion + offsetAngle))
                 #self.get_logger().info("J - y_long: {0}, x_lat: {1}".format(wpoff.y_long, wpoff.x_lat))
                 wp_list.waypoints.append(wpoff)
-                self.get_logger().info(len(wp_list.waypoints))
+                #self.get_logger().info(len(wp_list.waypoints))
             self.wps.waypoints = wp_list.waypoints
             succ = self.wpPush()
         # Prompt fail message
@@ -539,8 +539,10 @@ class WPmanip(Node):
 
     def calculateMidpoint(self):
         midpoint = Waypoint()
-        midpoint.x_lat = self.wps.waypoints[1].x_lat
-        midpoint.y_long = self.wps.waypoints[1].y_long
+        
+        if (len(self.wps.waypoints) > 1):
+            midpoint.x_lat = self.wps.waypoints[1].x_lat
+            midpoint.y_long = self.wps.waypoints[1].y_long
         
         if (len(self.wps.waypoints) > 2):
         # Determine mission mindpoint
@@ -556,6 +558,7 @@ class WPmanip(Node):
                 minY = min(minY, wp.x_lat)
             midpoint.y_long = (minX + maxX) / 2
             midpoint.x_lat = (minY + maxY) / 2
+            
         return midpoint
         
     # *** Run function ***

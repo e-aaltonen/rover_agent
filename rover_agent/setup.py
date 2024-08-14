@@ -29,6 +29,13 @@ setup(
             "mission_server = src.mission_server:main",
             "rc_arm_disarm = src.rc_arm_disarm:main",
             "servo_manager = src.servo_manager:main",
+            "autogui = src.autogui:main",
+            "backwards_mission = src.backwards_mission:main",
+            "offset_mission = src.offset_mission:main",
+            "offset_one_wp = src.offset_one_wp:main",
+            "rotate_mission = src.rotate_mission:main",
+            "scale_mission = src.scale_mission:main",
+            "mirror_mission = src.mirror_mission:main",
         ],
     },
 )

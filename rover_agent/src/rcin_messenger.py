@@ -145,7 +145,7 @@ class RCInMessenger(Node):
         paramList[0].value.type = 2
         paramList[1].name = param_id_3
         paramList[1].value.type = 2
-        param_client = ParamSetClient()
+        param_client = ParamSetClient("/mavros/param/set_parameters")
         if sw == SW_DOWN:
             paramList[0].value.integer_value = disable
             paramList[1].value.integer_value = disable

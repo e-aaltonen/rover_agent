@@ -7,9 +7,9 @@ from rover_agent_msgs.srv import MissionManip
 from mavros_msgs.srv import CommandBool, SetMode
 
 class ParamGetClient(Node):
-    def __init__(self):
+    def __init__(self, service_name):
         super().__init__("paramget_client_async")
-        self.cli = self.create_client(GetParameters, "/mavros/param/get_parameters")
+        self.cli = self.create_client(GetParameters, service_name)
         while not self.cli.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info("Waiting for service...")
         self.req = GetParameters.Request()
@@ -20,9 +20,9 @@ class ParamGetClient(Node):
         return self.future.result()
 
 class ParamSetClient(Node):
-    def __init__(self):
+    def __init__(self, service_name):
         super().__init__("paramset_client_async")
-        self.cli = self.create_client(SetParameters, "/mavros/param/set_parameters")
+        self.cli = self.create_client(SetParameters, service_name)
         while not self.cli.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info("Waiting for service...")
         self.req = SetParameters.Request()
