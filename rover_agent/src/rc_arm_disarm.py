@@ -40,7 +40,7 @@ class RCArming(Node):
 
         self.swc = 0
         self.swd = 0
-        self.declare_parameter("opt_mode", value="GUIDED")
+        self.declare_parameter("opt_mode", value="RTL")
         self.opt_mode = self.get_parameter("opt_mode").get_parameter_value().string_value
 
     # Read Switch C value
