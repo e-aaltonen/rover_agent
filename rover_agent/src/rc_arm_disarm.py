@@ -22,7 +22,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import UInt8, Int8
 from mavros_msgs.srv import CommandBool, SetMode
-from src.service_clients import SetModeClient, ArmingClient
+from src.service_clients import SetModeClient, ArmingClient, SetCurrentWPClient
 
 # int literals - switch positions
 SW_UP = 0
@@ -76,6 +76,16 @@ class RCArming(Node):
                         self.get_logger().warn("Invalid aux mode name: {0}".format(self.opt_mode))
                 except Exception as e:
                         self.get_logger().error("Set mode service call failed: %s"%e)
+                
+                # Set WP #0 as current waypoint to reset mission
+                set_current_client = SetCurrentWPClient()
+                
+                try:
+                     set_result = set_current_client.send_request(wp_seq=0)
+                except Exception as e:
+                     self.get_logger().error("Setting current WP #0 failed")
+
+                set_current_client.destroy_node()
 
             mode_client.destroy_node()
 
