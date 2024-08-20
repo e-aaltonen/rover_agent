@@ -4,7 +4,7 @@ from rclpy.node import Node
 
 from rcl_interfaces.srv import GetParameters, SetParameters
 from rover_agent_msgs.srv import MissionManip
-from mavros_msgs.srv import CommandBool, SetMode
+from mavros_msgs.srv import CommandBool, SetMode, WaypointSetCurrent
 
 class ParamGetClient(Node):
     def __init__(self, service_name):
@@ -60,7 +60,21 @@ class ArmingClient(Node):
         self.future = self.cli.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
+
+class SetCurrentWPClient(Node):
+    def __init__(self):
+        super().__init__("set_current_wp_client_async")
+        self.cli = self.create_client(WaypointSetCurrent, "/mavros/mission/set_current")
+        while not self.cli.wait_for_service(timeout_sec=1.0):
+                self.get_logger().info("Waiting for service...")
+        self.req = WaypointSetCurrent.Request()
+    def send_request(self, wp_seq):
+        self.req.wp_seq = wp_seq
         
+        self.future = self.cli.call_async(self.req)
+        rclpy.spin_until_future_complete(self, self.future)
+        return self.future.result()
+            
 class MissionManipClient(Node):
     def __init__(self):
         super().__init__("mission_manip_client_async")
