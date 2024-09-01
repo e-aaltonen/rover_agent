@@ -323,18 +323,18 @@ class MissionGUI(Node):
         self.f_dir.grid(row=9, column=1, columnspan=2, sticky="W")
         
         self.entry_dist = tk.StringVar()
-        self.entry_dist.trace_add("w", self.on_entry_dist_change)
+        self.entry_dist.trace_add("write", self.on_entry_dist_change)
         self.e_distance_1 = tk.Label(self.f_dist, text = "", width=2)
         self.e_distance = tk.Entry(self.f_dist, width=6, borderwidth=2, textvariable=self.entry_dist)
         self.e_distance_label = tk.Label(self.f_dist, text = "m", width=4)
 
         self.entry_sfactor = tk.StringVar()
-        self.entry_sfactor.trace_add("w", self.on_entry_sfactor_change)
+        self.entry_sfactor.trace_add("write", self.on_entry_sfactor_change)
         self.e_scale_factor = tk.Entry(self.f_scale, width=5, borderwidth=2, textvariable=self.entry_sfactor)
         self.e_sfactor_label = tk.Label(self.f_scale, text = "k:", width=2)
 
         self.entry_dir = tk.StringVar()
-        self.entry_dir.trace_add("w", self.on_entry_dir_change)
+        self.entry_dir.trace_add("write", self.on_entry_dir_change)
         self.e_direction_1 = tk.Label(self.f_dir, text = "", width=4)
         self.e_direction = tk.Entry(self.f_dir, width=4, borderwidth=2, textvariable=self.entry_dir)
         self.e_direction_label = tk.Label(self.f_dir, text = "°")
